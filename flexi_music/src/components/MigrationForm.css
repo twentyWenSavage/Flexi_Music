@@ -1,0 +1,67 @@
+/* MigrationForm.css */
+.migration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #d94898;
+  }
+  
+  .form-input,
+  .form-select {
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+  
+  .form-input:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: #1DB954;
+  }
+  
+  .form-error {
+    color: #ff0033;
+    font-size: 12px;
+  }
+  
+  .submit-button {
+    padding: 15px;
+    border-radius: 4px;
+    border: none;
+    background-color: #1DB954;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #17a75b;
+  }
+  
+  .submit-button:disabled {
+    background-color: #9eebcf;
+    cursor: not-allowed;
+  }
+  

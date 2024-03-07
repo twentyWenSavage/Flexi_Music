@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 100% 99%; /* Light gray background */
+    --foreground: 220 15% 20%; /* Dark gray text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+
+    --popover: 255 100% 99%;
+    --popover-foreground: 220 15% 20%;
+
+    --primary: 210 100% 40%; /* Blue for primary buttons and links */
+    --primary-foreground: 0 0% 100%; /* White text on primary buttons */
+
+    --secondary: 0 0% 43%; /* Darker gray for secondary elements */
+    --secondary-foreground: 255 100% 100%; /* White text on secondary elements */
+
+    --muted: 0 0% 75%; /* Muted text and icons */
+    --muted-foreground: 220 15% 20%;
+
+    --accent: 34 100% 50%; /* Accent color for notifications or highlights */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%; /* Red for destructive actions */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 80%; /* Light borders for separation */
+    --input: 220 15% 95%; /* Slightly darker input fields for contrast */
+    --ring: 210 100% 40%; /* Focus ring color to match primary */
+
+    --radius: 0.5rem; /* Rounded corners for elements */
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Adjust these colors for dark mode as needed */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  body {
+    @apply bg-white text-gray-800; /* Adjust the body background and text color for a light theme */
+  }
+}
+
+@layer components {
+  /* Customize your components layer with specific component styles */
+}
+
+@layer utilities {
+  /* Customize your utilities layer for additional helper classes */
+}

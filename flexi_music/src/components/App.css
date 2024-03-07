@@ -1,0 +1,44 @@
+/* App.css */
+:root {
+  /* Define your color scheme here */
+  --primary-color: #f0eea9f6; /* Example primary color */
+  --background-color: #d34b91; /* Example background color */
+  --text-color: #333; /* Example text color */
+}
+
+.app {
+  font-family: 'Arial', sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.app-header {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  padding: 20px;
+  text-align: center;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.app-footer {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+    .app-card {
+      padding: 1rem;
+    }
+  
+    .app-title {
+      font-size: 1.5rem;
+    }
+  }
+  
