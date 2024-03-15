@@ -1,5 +1,15 @@
-/* MigrationForm.css */
-.migration-form {
+/* AddPlaylistForm.css */
+.add-playlist-form {
+    margin: auto;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(234, 76, 200);
+  }
+  
+  /* Rest of the styling can mirror .migration-form */
+  .migration-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -7,7 +17,7 @@
     margin: 40px auto;
     padding: 20px;
     border-radius: 8px;
-    background-color: #eaebd3;
+    background-color: #f9ffa2;
     box-shadow: 0 4px 12px rgb(207, 63, 121);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
@@ -24,7 +34,7 @@
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #45abde;
+    color: #d94898;
   }
   
   .form-input,
@@ -44,7 +54,7 @@
   }
   
   .form-error {
-    color: #b1b1b1;
+    color: #ff0033;
     font-size: 12px;
   }
   
@@ -53,7 +63,7 @@
     border-radius: 4px;
     border: none;
     background-color: #1DB954;
-    color: rgb(216, 136, 212);
+    color: rgb(222, 104, 181);
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;

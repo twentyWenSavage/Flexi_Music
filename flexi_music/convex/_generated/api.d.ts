@@ -14,7 +14,15 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as functions_addPlaylist from "../functions/addPlaylist.js";
+import type * as functions_add_supported_platforms from "../functions/add_supported_platforms.js";
+import type * as functions_authenticateUser from "../functions/authenticateUser.js";
+import type * as functions_createPlaylistOnPlatform from "../functions/createPlaylistOnPlatform.js";
+import type * as functions_deletePlaylist from "../functions/deletePlaylist.js";
+import type * as functions_fetchPlaylist from "../functions/fetchPlaylist.js";
 import type * as functions_migratePlaylist from "../functions/migratePlaylist.js";
+import type * as functions_updatePlaylist from "../functions/updatePlaylist.js";
+import type * as functions_validatePlatform from "../functions/validatePlatform.js";
 import type * as myFunctions from "../myFunctions.js";
 
 /**
@@ -26,7 +34,15 @@ import type * as myFunctions from "../myFunctions.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  "functions/addPlaylist": typeof functions_addPlaylist;
+  "functions/add_supported_platforms": typeof functions_add_supported_platforms;
+  "functions/authenticateUser": typeof functions_authenticateUser;
+  "functions/createPlaylistOnPlatform": typeof functions_createPlaylistOnPlatform;
+  "functions/deletePlaylist": typeof functions_deletePlaylist;
+  "functions/fetchPlaylist": typeof functions_fetchPlaylist;
   "functions/migratePlaylist": typeof functions_migratePlaylist;
+  "functions/updatePlaylist": typeof functions_updatePlaylist;
+  "functions/validatePlatform": typeof functions_validatePlatform;
   myFunctions: typeof myFunctions;
 }>;
 export declare const api: FilterApi<

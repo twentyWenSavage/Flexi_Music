@@ -1,48 +1,49 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { Input } from './ui/input'; // Adjust the import path as necessary
-import { Button } from './ui/button'; // Adjust the import path as necessary
-import './MigrationForm.css'; // Assuming you have a separate CSS file for the form
+import React, { useState } from 'react';
+import './MigrationForm.css';
 
-interface FormValues {
-  sourcePlaylistUrl: string;
-  destinationPlatform: string;
-}
+const MigrationForm: React.FC = () => {
+  const [selectedPlaylist, setSelectedPlaylist] = useState<string>('');
+  const [destinationPlatform, setDestinationPlatform] = useState<string>('');
 
-interface MigrationFormProps {
-  onMigrate: SubmitHandler<FormValues>;
-}
+  const handlePlaylistChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedPlaylist(e.target.value);
+  };
 
-export const MigrationForm: React.FC<MigrationFormProps> = ({ onMigrate }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+  const handlePlatformChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setDestinationPlatform(e.target.value);
+  };
 
-  const onSubmit: SubmitHandler<FormValues> = data => {
-    onMigrate(data);
+  const handleMigration = () => {
+    // Perform migration logic here
+    console.log('Migrating playlist:', selectedPlaylist);
+    console.log('Destination platform:', destinationPlatform);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="migration-form">
+    <div className="migration-form">
       <div className="form-group">
-        <label htmlFor="sourcePlaylistUrl" className="form-label">Source Playlist URL</label>
-        <Input id="sourcePlaylistUrl" {...register("sourcePlaylistUrl", { required: true })} placeholder="Enter the source playlist URL" className="form-input" />
-        {errors.sourcePlaylistUrl && <span className="form-error">This field is required</span>}
+        <label htmlFor="playlist">Select Playlist to Migrate</label>
+        <input
+          type="text"
+          id="playlist"
+          value={selectedPlaylist}
+          onChange={handlePlaylistChange}
+          placeholder="Enter playlist name"
+        />
       </div>
-      
       <div className="form-group">
-        <label htmlFor="destinationPlatform" className="form-label">Destination Platform</label>
-        <select id="destinationPlatform" {...register("destinationPlatform", { required: true })} className="form-select">
+        <label htmlFor="platform">Select Destination Platform</label>
+        <select id="platform" value={destinationPlatform} onChange={handlePlatformChange}>
           <option value="">Select Platform</option>
           <option value="spotify">Spotify</option>
+          <option value="appleMusic">Apple Music</option>
           <option value="youtubeMusic">YouTube Music</option>
-          <option value="applemusic">Apple Music</option>
-          {/* Add more platforms as options here */}
         </select>
-        {errors.destinationPlatform && <span className="form-error">This field is required</span>}
       </div>
-
-      <Button type="submit" className="submit-button">Migrate Playlist</Button>
-    </form>
+      <button className="migrate-button" onClick={handleMigration}>
+        Migrate Now
+      </button>
+    </div>
   );
 };
 

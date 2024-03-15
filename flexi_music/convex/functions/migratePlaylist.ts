@@ -1,37 +1,60 @@
-// migratePlaylist.ts
 import { mutation } from "../_generated/server";
 import { Id } from "../_generated/dataModel";
+import { v } from "convex/values";
 
-interface Playlist {
-  name: string;
-  tracks: Track[];
-}
-
+// Define the Track and Playlist interfaces
 interface Track {
   title: string;
   artist: string;
-  // Add any additional track properties here
+  album?: string;
 }
 
-// Assuming `createPlaylistOnPlatform` is correctly implemented
-async function createPlaylistOnPlatform(destinationPlatform: string, tracks: Track[]): Promise<string> {
-  // Logic to create playlist on the destination platform
-}
-
-export default mutation(async ({ db }, sourcePlaylistId: Id<"playlists">, destinationPlatform: string) => {
-  // Correctly typecast the returned document
-  const sourcePlaylist = await db.table('playlists').doc(sourcePlaylistId).get() as Playlist | undefined;
-  if (!sourcePlaylist) {
-    throw new Error('Playlist not found');
+interface Playlist {
+    _id: Id<"playlists">;
+    _creationTime: number;
+    name: string;
+    platform: string;
+    url: string;
+    tracks: Track[];
+    migrated: boolean;
+    destinationPlatform?: string;
+    newPlaylistUrl?: string;
   }
 
-  const newPlaylistId = await createPlaylistOnPlatform(destinationPlatform, sourcePlaylist.tracks);
+// The `createPlaylistOnPlatform` function should interact with the destination platform's API
+async function createPlaylistOnPlatform(
+  destinationPlatform: string,
+  tracks: Track[]
+): Promise<string> {
+  // Simulate creating a playlist on the destination platform
+  // This will involve making API calls to the platform
+  return "newPlaylistId"; // Return a dummy ID for demonstration purposes
+}
 
-  // Make sure you are using the correct update syntax
-  await db.table('playlists').doc(sourcePlaylistId).update({
-    migratedTo: destinationPlatform,
-    newPlaylistId: newPlaylistId,
-  });
+// Define the mutation
+export default mutation({
+  args: {
+    sourcePlaylistId: v.id("playlists"), // Specify the table name for the ID
+    destinationPlatform: v.string(),
+  },
+  handler: async ({ db }, { sourcePlaylistId, destinationPlatform }) => {
+    // Fetch the source playlist from the database
+    const sourcePlaylist = await db.get(sourcePlaylistId);
+    if (!sourcePlaylist) {
+      throw new Error('Playlist not found');
+    }
 
-  return { success: true, newPlaylistId };
+    // Interface with the destination platform's API
+    const newPlaylistId = await createPlaylistOnPlatform(destinationPlatform, sourcePlaylist.tracks);
+
+    // Update the database with the new playlist ID or status
+    await db.patch(sourcePlaylistId, {
+      migrated: true,
+      destinationPlatform,
+      newPlaylistUrl: `https://destinationplatform.com/playlist/${newPlaylistId}`, // This URL is an example and would be replaced by the actual URL from the destination platform,
+    });
+
+    // Return some status or result back to the client
+    return { success: true, newPlaylistId };
+  },
 });
